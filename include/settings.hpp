@@ -1,5 +1,5 @@
 
-//Archivo para definir configuraciones en general para el dispositivo ESP32
+//Archivo para definir variables de las configuraciones en general para el dispositivo ESP32
 
 //----------------------//
 //Definiciones
@@ -28,16 +28,31 @@ char    wifi_gateway[15];         //Gateway
 char    wifi_subnet[15];          //Subred
 char    wifi_primaryDNS[15];      //DNS primario
 char    wifi_secondaryDNS[15];    //DNS secundario
-//----------------------//
+//------------------------------------//
 //Variables para el Acces Point (AP) 
-//----------------------//
+//------------------------------------//
 boolean ap_accessPoint;     //Uso del modo AP
 char    ap_nameap[31];      //SSID AP
 char    ap_passwordap[63];  //Password AP
 int     ap_canalap;         //Canal del AP
 int     ap_hiddenap;        //Estado en que si es visible o no el AP (0 visible - 1 oculto)
 int     ap_connetap;        // Numero de conexiones al AP
-//----------------------//
+//---------------------------------//
+//Zona de configuracion del MQTT
+//---------------------------------//
+boolean mqtt_enable;                // Habilitar MQTT Broker
+char    mqtt_user[30];              // Usuario MQTT Broker 
+char    mqtt_id[30];                // ID MQTT Broker       
+char    mqtt_passw[30];             // Password MQTT Broker 
+char    mqtt_server[39];            // Servidor del MQTT Broker
+int     mqtt_port;                  // Puerto servidor MQTT Broker
+int     mqtt_time;                  // Tiempo de envio por MQTT
+//--------------------------------------//
 //Zona de otras variables auxiliares
-//----------------------//
+//--------------------------------------//
 uint8_t ip[4];             //Variable de la funcion que convierte los strings a cadena IP
+float TempCPU;             //Variable de la temperatura del CPU en °C
+//---------------------------------------------------//
+//---------------Zonas de Relays---------------------//
+//---------------------------------------------------//
+bool Relay01_status, Relay02_status; //Status de los relays de salida, True o False

@@ -1,19 +1,21 @@
 /*
  * -------------------------------------------------------------------
- Directiva de cip ESP32 relacionada con los setups del WiFi
+ Directiva de chip ESP32 relacionada con los setups del WiFi
+ estos datos se almacenarán en los documentos json para su pronta lectura
  * -------------------------------------------------------------------
  */
 
 #include <WiFi.h>
 #include <DNSServer.h>
 #include <ESPmDNS.h> 
+
 const byte DNSSERVER_PORT = 53; //conexion por el puerto 53
 DNSServer dnsServer;
 
 IPAddress apIP(192, 168, 4, 1);
 IPAddress netMsk(255, 255, 255, 0);
 
-int wifi_mode = WIFI_STA; //Por defecto en modo estación
+int wifi_mode = WIFI_STA; //Por defecto en modo estación, es decir CLIENTE
 unsigned long previousMillisWIFI = 0;
 unsigned long intervalWIFI = 30000;
 
@@ -50,14 +52,14 @@ void startClient() {
     byte b = 0;
     while (WiFi.status() != WL_CONNECTED && b < 60){
         b++;
-        log("Warning: Intentando conexión WiFi...");
+        log("ATENCION ROBERT: Intentando conexión WiFi...");
         delay(500);
         // para parpadear led WIFI cuando esta conectandose al wifi no bloqueante 
         // Parpadeo Simple del Led cada 100 ms
         blinksingle(100, WIFILED);       
     }
     if (WiFi.status() == WL_CONNECTED){
-        // WiFi Station conectado
+        // WiFi Station o Cliente conectado
         log("Info: WiFi conectado (" + String(WiFi.RSSI()) + ") IP " + ipStr(WiFi.localIP()));
         // Parpadeo Ramdon del Led
         blinkRandomSingle(10, 100, WIFILED);
